@@ -2,7 +2,7 @@
 
 """ main.py: A 3D Rubik's Cube designed in Python using PyOpenGL. Written shortly after it's 2D counterpart. """
 
-__author__  = "Avedati"
+__author__  = "Abhinav Vedati"
 __version__ = "0.0.2"
 
 import pygame, sys, time, os
