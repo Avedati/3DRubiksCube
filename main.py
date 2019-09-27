@@ -79,6 +79,15 @@ bot_corners = []
 #
 #2 3
  
+"""
+  move_face(side_edges, side_corners, selftype)
+  
+  This function rotate one face of the Rubik's Cube.
+  
+  @param side_edges ...
+  @param side_corners ...
+  @param selftype ...
+"""
 def move_face(side_edges, side_corners, selftype):
     #moving edges
     if selftype == 'ni':
