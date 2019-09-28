@@ -82,11 +82,11 @@ bot_corners = []
 """
   move_face(side_edges, side_corners, selftype)
   
-  This function rotate one face of the Rubik's Cube.
+  This function rotates one face of the Rubik's Cube.
   
-  @param side_edges ...
-  @param side_corners ...
-  @param selftype ...
+  @param side_edges A list of edges for the selected face.
+  @param side_corners A list of corners for the selected face.
+  @param selftype The type of rotation to perform (based on which face is being rotated).
 """
 def move_face(side_edges, side_corners, selftype):
     #moving edges
@@ -119,6 +119,11 @@ def move_face(side_edges, side_corners, selftype):
         My_new_list.append(side_corners[1])
         side_corners[0], side_corners[2], side_corners[3], side_corners[1] = My_new_list[1], My_new_list[2], My_new_list[3], My_new_list[0]
  
+"""
+  f()
+  
+  This function rotates the front face of the Rubik's Cube clockwise.
+"""
 def f():
     #moving edges
     move_face(front_edges, front_corners, 'i')
@@ -140,6 +145,12 @@ def f():
     Mylist.append(left_corners[3])
     top_corners[2], top_corners[3], right_corners[1], right_corners[3], bot_corners[2], bot_corners[3], left_corners[1], left_corners[3] = Mylist[6], Mylist[7], Mylist[0], Mylist[1], Mylist[2], Mylist[3], Mylist[4], Mylist[5]
     solution.append('fi')
+    
+"""
+  b()
+  
+  This function rotates the back face of the Rubik's Cube clockwise.
+"""
 def b():
     move_face(back_edges, back_corners, 'ni')
     b_l1 = []
@@ -160,6 +171,13 @@ def b():
     Mylist.append(left_corners[2])
     top_corners[0], top_corners[1], right_corners[0], right_corners[2], bot_corners[0], bot_corners[1], left_corners[0], left_corners[2] = Mylist[2], Mylist[3], Mylist[4], Mylist[5], Mylist[6], Mylist[7], Mylist[0], Mylist[1]
     solution.append('bi')
+    
+ 
+"""
+  l()
+  
+  This function rotates the left face of the Rubik's Cube clockwise.
+"""
 def l():
     move_face(left_edges, left_corners, 'i')
     l_l1 = []
@@ -180,6 +198,12 @@ def l():
     Mylist.append(bot_corners[2])
     front_corners[0], front_corners[2], top_corners[0], top_corners[2], back_corners[0], back_corners[2], bot_corners[0], bot_corners[2] = Mylist[2], Mylist[3], Mylist[4], Mylist[5], Mylist[6], Mylist[7], Mylist[0], Mylist[1]
     solution.append('li')
+    
+"""
+  r()
+  
+  This function rotates the right face of the Rubik's Cube clockwise.
+"""
 def r():
     move_face(right_edges, right_corners, 'ni')
     r_l1 = []
@@ -200,6 +224,12 @@ def r():
     Mylist.append(bot_corners[3])
     front_corners[1], front_corners[3], top_corners[1], top_corners[3], back_corners[1], back_corners[3], bot_corners[1], bot_corners[3] = Mylist[6], Mylist[7], Mylist[0], Mylist[1], Mylist[2], Mylist[3], Mylist[4], Mylist[5]
     solution.append('ri')
+  
+"""
+  u()
+  
+  This function rotates the top face of the Rubik's Cube clockwise.
+"""
 def u():
     move_face(top_edges, top_corners, 'i')
     u_l1 = []
@@ -220,6 +250,12 @@ def u():
     Mylist.append(right_corners[1])
     front_corners[0], front_corners[1], left_corners[0], left_corners[1], back_corners[0], back_corners[1], right_corners[0], right_corners[1] = Mylist[6], Mylist[7], Mylist[0], Mylist[1], Mylist[2], Mylist[3], Mylist[4], Mylist[5]
     solution.append('ui')
+
+"""
+  d()
+  
+  This function rotates the front face of the Rubik's Cube clockwise.
+"""
 def d():
     move_face(bot_edges, bot_corners, 'ni')
     d_l1 = []
@@ -241,7 +277,11 @@ def d():
     front_corners[3], front_corners[2], left_corners[3], left_corners[2], back_corners[3], back_corners[2], right_corners[3], right_corners[2] = Mylist[2], Mylist[3], Mylist[4], Mylist[5], Mylist[6], Mylist[7], Mylist[0], Mylist[1]
     solution.append('di')
  
- 
+"""
+  scramble()
+  
+  This function will perform random moves to scramble the Rubik's Cube.
+"""
 def scramble():
     luck = randint(1, 300)
     for i in range(0, luck):
@@ -258,7 +298,12 @@ def scramble():
             u()
         elif luck1 == 6:
             d() 
- 
+
+"""
+  fast_solution()
+  
+  This function (almost) instantly solves the Rubik's Cube.
+"""
 def fast_solution():
     myRange = int(len(solution))
     for i in range(myRange):
@@ -280,7 +325,12 @@ def fast_solution():
         elif solution[i - 1] == 'di':
             for tres in range(3):
                 d()
- 
+
+"""
+  slow_solution()
+  
+  This function slowly solves the Rubik's Cube (so that the user can see the necessary steps).
+"""
 def slow_solution():
     myRange = int(len(solution))
     for i in range(myRange):
@@ -308,7 +358,20 @@ def slow_solution():
             for tres in range(3):
                 d()
             time.sleep(0.5)
- 
+
+"""
+  isColor_edges(List, List2, pos1, pos2, pos3, pos4)
+  
+  This function populates an edges list with colors (based on an original list).
+  
+  @param List The source list, which should have 4 numbers, each 1-6,
+              where: 1 = white, 2 = light blue, 3 = blue, 4 = green, 5 = purple, and 6 = red.
+  @param List2 The destination list, which will be filled with colors.
+  @param pos1 The first requested index of the source list.
+  @param pos2 The second requested index of the source list.
+  @param pos3 The third requested index of the source list.
+  @param pos4 The fourth requested index of the source list.
+"""
 def isColor_edges(List, List2, pos1, pos2, pos3, pos4):
     if List[pos1] == 1:
         List2.append(white)
@@ -358,7 +421,20 @@ def isColor_edges(List, List2, pos1, pos2, pos3, pos4):
         List2.append(purple)
     if List[pos4] == 6:
         List2.append(red)
- 
+
+"""
+  isColor_corners(side, side2, pos1, pos2, pos3, pos4)
+  
+  This function populates a corners list with colors (based on an original list).
+  
+  @param List The source list, which should have 4 numbers, each 1-6,
+              where: 1 = white, 2 = light blue, 3 = blue, 4 = green, 5 = purple, and 6 = red.
+  @param List2 The destination list, which will be filled with colors.
+  @param pos1 The first requested index of the source list.
+  @param pos2 The second requested index of the source list.
+  @param pos3 The third requested index of the source list.
+  @param pos4 The fourth requested index of the source list.
+"""
 def isColor_corners(side, side2, pos1, pos2, pos3, pos4):
     if side[pos1] == 1:
         side2.append(white)
@@ -408,10 +484,30 @@ def isColor_corners(side, side2, pos1, pos2, pos3, pos4):
         side2.append(purple)
     if side[pos4] == 6:
         side2.append(red)
- 
+
+"""
+  t(x, y, z)
+  
+  This function calls the glTranslatef function with the provided arguments.
+  
+  @param x The x component of the translation vector.
+  @param y The y component of the translation vector.
+  @param z The z component of the translation vector.
+"""
 def t(x, y, z):
     glTranslatef(x, y, z)
- 
+
+"""
+  draw(p1, p2, p3, p4, color)
+  
+  This function draws a quad, with the four points and color provided.
+  
+  @param p1 The first point of the quadrilateral.
+  @param p2 The second point of the quadrilateral.
+  @param p3 The third point of the quadrilateral.
+  @param p4 The fourth point of the quadrilateral.
+  @param color The color of the quadrilateral.
+"""
 def draw(p1, p2, p3, p4, color):
     glBegin(GL_QUADS)
     glColor3fv(color) 
@@ -420,7 +516,12 @@ def draw(p1, p2, p3, p4, color):
     glVertex3fv(p3)
     glVertex3fv(p4)
     glEnd()
- 
+
+"""
+  centers()
+  
+  This function draws the centers of every face of the cube with the appropriate color.
+"""
 def centers():
     #top center
     draw((0.3, -0.9, -0.3), (-0.3, -0.9, -0.3), (-0.3, -0.9, 0.3), (0.3, -0.9, 0.3), (1, 0, 1))
@@ -434,7 +535,12 @@ def centers():
     draw((-0.9, -0.3, 0.3), (-0.9, -0.3, -0.3), (-0.9, 0.3, -0.3), (-0.9, 0.3, 0.3), (0, 0, 1))
     #right center
     draw((0.9, -0.3, 0.3), (0.9, -0.3, -0.3), (0.9, 0.3, -0.3), (0.9, 0.3, 0.3), (0, 1, 0))
- 
+
+"""
+  draw_edges()
+  
+  This function draws the edges of every face of the cube with the appropriate color.
+"""
 def draw_edges():
     isColor_edges(front, front_edges, 3, 5, 7, 1)
     #draw front edges
@@ -544,7 +650,12 @@ def draw_edges():
     #***
     #***
     draw((-0.3, -0.9, 0.9), (-0.3, -0.9, 0.3), (0.3, -0.9, 0.3), (0.3, -0.9, 0.9), bot_edges[3])
- 
+
+"""
+  draw_corners()
+  
+  This function draws the corners of every face of the cube with the appropriate color.
+"""
 def draw_corners():
     isColor_corners(front, front_corners, 0, 2, 6, 8)
     #draw front corners 
@@ -607,28 +718,65 @@ def draw_corners():
     draw((-0.9, -0.9, 0.9), (-0.3, -0.9, 0.9), (-0.3, -0.9, 0.3), (-0.9, -0.9, 0.3), bot_corners[2])
     draw((0.9, -0.9, 0.9), (0.3, -0.9, 0.9), (0.3, -0.9, 0.3), (0.9, -0.9, 0.3), bot_corners[3])
  
- 
+"""
+  lt()
+  
+  This function uses glRotatef to rotate the cube left.
+"""
 def lt():
     glRotatef(2, 0, 3, 0)
- 
+
+"""
+  lt()
+  
+  This function uses glRotatef to rotate the cube right.
+"""
 def rt():
     glRotatef(2, 0, -3, 0)
- 
+
+"""
+  fd()
+  
+  This function uses glRotatef to rotate the cube up.
+"""
 def fd():
     glRotatef(2, 3, 0, 0)
- 
+
+"""
+  lt()
+  
+  This function uses glRotatef to rotate the cube down.
+"""
 def dn():
     glRotatef(2, -3, 0, 0)
- 
+
+"""
+  cube()
+  
+  This function draws the outline of every edge of the Rubik's Cube.
+"""
 def cube():
     glBegin(GL_LINES)
     for edge in edges:
         for vertex in edge:
             glVertex3fv(verts[vertex])
     glEnd()
+
 static = True
 I = False
 os.system('clear')
+
+"""
+  main(static, I)
+  
+  This function sets up our cube, renders it using Pygame and OpenGL, and takes keyboard and mouse input and
+  uses it move the camera and change the state of the cube.
+  
+  @param static Whether or not the cube can move.
+  @param I Whether or not the cube rotation is inverted.
+         If it is, every move will be counter-clockwise.
+         If not, every move will be clockwise.
+"""
 def main(static, I):
     cubex = 800
     cubey = 600
@@ -741,4 +889,5 @@ def main(static, I):
         glDisable(GL_DEPTH_TEST)
         pygame.display.flip()
         pygame.time.wait(10)
+
 main(static, I)
